@@ -1,0 +1,15 @@
+# Ignore virtual environments
+venv/
+__pycache__/
+
+# Python cache files
+*.pyc
+*.pyo
+*.pyd
+
+# dotenv files
+.env
+.env.*
+
+# Any log files generated from docker/others
+*.log
