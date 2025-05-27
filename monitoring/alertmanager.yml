@@ -24,4 +24,4 @@ receivers:
 
   - name: 'webhook-failover'
     webhook_configs:
-      - url: 'http://3.70.128.61:6000/failover'
+      - url: 'http://3.72.35.10:6000/failover'
