@@ -1,0 +1,29 @@
+groups:
+- name: failover-alerts
+  rules:
+    - alert: OnPremAPIUnavailable
+      expr: haproxy_server_up{backend="servers", server="onprem"} == 0
+      for: 30s
+      labels:
+        severity: warning
+      annotations:
+        summary: "On-Prem API is DOWN"
+        description: "HAProxy marked the on-prem server as DOWN. Cloud is expected to take over."
+
+    - alert: CloudAPIUnavailable
+      expr: haproxy_server_up{backend="servers", server="cloud-api"} == 0
+      for: 30s
+      labels:
+        severity: warning
+      annotations:
+        summary: "Cloud API is DOWN"
+        description: "HAProxy marked the cloud server as DOWN. Failover is not possible if on-prem also fails."
+
+    - alert: AllBackendsDown
+      expr: sum(haproxy_server_up{backend="servers"}) == 0
+      for: 30s
+      labels:
+        severity: critical
+      annotations:
+        summary: "🚨 ALL APIs are DOWN"
+        description: "Both on-prem and cloud servers are DOWN — no service is available."

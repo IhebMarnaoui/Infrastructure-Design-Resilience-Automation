@@ -1,0 +1,17 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'ihebmarnaoui@gmail.com'
+  smtp_auth_username: 'ihebmarnaoui@gmail.com'
+  smtp_auth_password: 'xxxxxxxxxxxxxxx' #removed for security purposes
+  smtp_require_tls: true
+
+route:
+  receiver: 'email-alert'
+  group_wait: 10s
+  group_interval: 30s
+  repeat_interval: 2m
+
+receivers:
+  - name: 'email-alert'
+    email_configs:
+      - to: 'ihebmarnaoui@gmail.com'

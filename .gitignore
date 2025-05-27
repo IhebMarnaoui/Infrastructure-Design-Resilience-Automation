@@ -13,3 +13,18 @@ __pycache__/
 
 # Any log files generated from docker/others
 *.log
+
+# Terraform state
+*.tfstate
+*.tfstate.backup
+
+# Terraform plan files
+*.tfplan
+
+# Terraform crash logs
+crash.log
+
+# Sensitive terraform data
+.terraform*
+.terraform/
+terraform.tfvars
