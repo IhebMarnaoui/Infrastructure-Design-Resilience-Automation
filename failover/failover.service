@@ -1,0 +1,13 @@
+[Unit]
+Description=Failover Webhook Flask Service
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/Infrastructure-Design-Resilience-Automation/failover
+ExecStart=/usr/bin/python3 failover_webhook.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

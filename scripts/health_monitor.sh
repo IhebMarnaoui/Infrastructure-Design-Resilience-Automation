@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ONPREM_URL="http://localhost:5000/health"
-CLOUD_URL="http://54.93.70.163:5000/health" #EC2 Instance IP
+CLOUD_URL="http://3.70.223.138:5000/health" #EC2 Instance IP
 LOG_FILE="health.log"
 
 log() {

@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "cloud_api" {
   ami                    = "ami-0faab6bdbac9486fb" # Ubuntu 22.04 LTS in eu-central-1
   instance_type          = "t2.micro"
-  key_name               = var.key_name
+  key_name               = var.key_name # Previously created on the cloud for simplicity
   associate_public_ip_address = true
 
   user_data              = file("user_data.sh")

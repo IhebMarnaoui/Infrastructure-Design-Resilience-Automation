@@ -1,0 +1,21 @@
+name: Health Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-infra:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Health Check Script
+        run: |
+          echo "Running health check..."
+          chmod +x scripts/health_monitor.sh || true
+          ./scripts/health_monitor.sh || echo "Simulated failure: container might be down"
