@@ -7,20 +7,21 @@ apt install -y docker.io python3-pip git
 systemctl enable docker
 systemctl start docker
 
+# Add ubuntu user to docker group (so it can run docker without sudo)
+usermod -aG docker ubuntu
+
 # Clone your repo
 cd /home/ubuntu
 git clone https://github.com/ihebmarnaoui/Infrastructure-Design-Resilience-Automation.git
+
+# Switch to new group (docker) and continue setup
+su - ubuntu -c "
 cd Infrastructure-Design-Resilience-Automation
-
-# Install Python dependencies
-pip3 install -r failover/requirements.txt
-
-# Make scripts executable
+pip3 install -r failover/requirements.txt 
 chmod +x failover/start_cloud.sh
 chmod +x failover/stop_cloud.sh
-
-# Build Docker image for cloud-api
 docker build -t cloud-api .
+"
 
 # Setup systemd for auto-start
 cp failover/failover.service /etc/systemd/system/

@@ -10,13 +10,4 @@ groups:
           summary: "On-prem server is down"
           description: "HAProxy marked the on-prem server as DOWN. Cloud is expected to take over."
 
-      - alert: OnPremUp
-        expr: haproxy_server_up{backend="servers", server="onprem"} == 1
-              and haproxy_server_up{backend="servers", server="cloud-api"} == 1
-        for: 15s
-        labels:
-          severity: info
-        annotations:
-          summary: "On-prem server is back up"
-          description: "Cloud was serving traffic, but on-prem is healthy again. Traffic can be restored."
 

@@ -9,13 +9,16 @@ def failover():
     alerts = data.get('alerts', [])
     for alert in alerts:
         alertname = alert['labels'].get('alertname')
+        status = alert.get('status')  # firing or resolved
+
         try:
-            if alertname == "OnPremDown":
+            if alertname == "OnPremDown" and status == "firing":
                 subprocess.call(["/home/ubuntu/Infrastructure-Design-Resilience-Automation/failover/start_cloud.sh"])
-            elif alertname == "OnPremUp":
+            elif alertname == "OnPremDown" and status == "resolved":
                 subprocess.call(["/home/ubuntu/Infrastructure-Design-Resilience-Automation/failover/stop_cloud.sh"])
-        except Exception:
-            pass  # Silently ignore errors for now
+        except Exception as e:
+            print("Error:", e)
+
     return "OK", 200
 
 if __name__ == '__main__':
