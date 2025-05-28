@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Used to manually observe current status of On-Prem vs Cloud API
+
 ONPREM_URL="http://localhost:5000/health"
-CLOUD_URL="http://3.70.223.138:5000/health" #EC2 Instance IP
+CLOUD_URL="http://3.79.103.52:5000/health" #EC2 Instance IP
 LOG_FILE="health.log"
 
 log() {

@@ -1,21 +1,27 @@
-name: Health Check
+name: Deploy and Test Lifecycle
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  check-infra:
+  deploy-and-test:
+    name: Provision EC2 and Test Lifecycle
     runs-on: ubuntu-latest
 
+    env:
+      AWS_REGION: eu-central-1
+
     steps:
-      - name: Checkout repository
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Run Health Check Script
-        run: |
-          echo "Running health check..."
-          chmod +x scripts/health_monitor.sh || true
-          ./scripts/health_monitor.sh || echo "Simulated failure: container might be down"
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        working-directory: ./terraform
+        run: terraform init
+
+      - name: Terraform Apply
+        working-directory: ./terraform
+        run: terraform apply -var="key_name={{ secrets.SECRET_KEY }}" -auto-approve
