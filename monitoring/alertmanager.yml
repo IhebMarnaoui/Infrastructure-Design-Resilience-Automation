@@ -2,7 +2,7 @@ global:
   smtp_smarthost: 'smtp.gmail.com:587'
   smtp_from: 'ihebmarnaoui@gmail.com'
   smtp_auth_username: 'ihebmarnaoui@gmail.com'
-  smtp_auth_password: 'ygqfmubnjcikwgxq' #removed for security purposes
+  smtp_auth_password: 'xxxxxxxxxxxxxxxx' #removed for security purposes
   smtp_require_tls: true
 
 route:
