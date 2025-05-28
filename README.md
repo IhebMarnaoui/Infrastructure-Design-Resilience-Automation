@@ -114,7 +114,7 @@ These scripts stop/start the on-prem container to simulate outages and recoverie
 
 ---
 
-## 🧱 Infrastructure Overview
+## 🧱 Architecture Overview
 
 - EC2 runs the webhook receiver and Docker service
 - Prometheus and Alertmanager run locally with HAProxy
