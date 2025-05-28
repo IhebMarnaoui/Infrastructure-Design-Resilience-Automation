@@ -121,6 +121,8 @@ These scripts stop/start the on-prem container to simulate outages and recoverie
 - Terraform handles all provisioning
 - GitHub Actions can be used to orchestrate setup
 
+![Architecture Diagram](<assets/Architecture Diagram.png>)
+
 ---
 
 ## 🚀 Future Work
